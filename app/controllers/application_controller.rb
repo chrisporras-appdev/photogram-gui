@@ -62,4 +62,22 @@ class ApplicationController < ActionController::Base
 
     redirect_to("/photos/#{image_id}")
   end
+
+  def delete_photo
+    photo_id = params.fetch(:photo_id)
+    p = Photo.where({:id => photo_id}).at(0)
+    p.destroy
+
+    redirect_to("/photos", {:notice => "Deleted #{p.caption}."})
+  end
+
+  def add_comment
+    com = Comment.new
+    com.photo_id = params.fetch("photo_id")
+    com.author_id = params.fetch("author_id")
+    com.body = params.fetch("comment_body")
+    com.save
+
+    redirect_to("/photos/#{com.photo_id}")
+  end
 end

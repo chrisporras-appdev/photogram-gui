@@ -18,6 +18,9 @@ Rails.application.routes.draw do
 
   get("/update_photo/:photo_id", {:controller => "application", :action => "update_photo"})
 
+  get("/delete_photo/:photo_id", {:controller => "application", :action => "delete_photo"})
+
+  get("/add_comment", {:controller => "application", :action => "add_comment"})
   
   # ======== Routes for Admin Dashboard =============
   devise_for :admin_users, ActiveAdmin::Devise.config
