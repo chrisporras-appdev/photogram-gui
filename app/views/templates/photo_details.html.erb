@@ -1,5 +1,76 @@
-<h1> Photo Details <%= @photo.id %> </h1>
+<div class=nav_bar>
+  <ul>
+      <li> 
+        <a href="/users">Users</a> 
+      </li>
+      <li> 
+        <a href= "/photos"> Photos </a> 
+      </li>  
+  </ul>
+</div>
+
+<h1> Photo Details </h1>
 
 <dl>
-  
+  <dt>Image</dt>
+
+  <dd>
+  <img src="<%= @photo.image %>">
+  </dd>
+
+  <dt>Caption</dt>
+
+  <dd>
+  <p> <%= @photo.caption %> </p>
+  </dd>
+
+  <dt>Owner</dt>
+
+  <dd>
+  <%= @photo.poster.username %>
+  </dd>
+
+  <dt>Posted</dt>
+
+  <dd>
+  2 months ago
+  </dd>
+
+  <dt>Edit photo</dt>
+
+  <dd>
+    <form action="/update_photo/<%=@photo.id%>">
+      <label for="update_image_url">Image</label>
+      <input id="update_image_url" type="text" name="image_url" value="<%= @photo.image %>">
+      
+      <label for="update_image_caption">Caption</label>
+      <textarea id="update_image_caption" type="text" name="image_caption" placeholder="Enter a caption for the photo..."><%= @photo.caption %></textarea>
+      <button> Update photo </button>
+    </form>
+  </dd>
+
+  <dt>Delete photo</dt>
+
+  <dd>
+    <a href = "/delete_photo/<%= @photo.id %>">Delete this photo</a>
+  </dd>
 </dl>
+
+<h2>Comments</h2>
+
+<table>
+  <tr>
+    <th>
+    Commenter
+    </th>
+
+    <th>
+    Comment
+    </th>
+
+    <th>
+    Posted
+    </th>
+  </tr>
+</table>
+

@@ -12,9 +12,11 @@ Rails.application.routes.draw do
 
   get("/photos", {:controller => "application", :action => "list_photos"})
 
-  get("/photos/")
+  get("/insert_photo", {:controller => "application", :action => "insert_photo"})
 
   get("/photos/:photo_id", {:controller => "application", :action => "photo_details"})
+
+  get("/update_photo/:photo_id", {:controller => "application", :action => "update_photo"})
 
   
   # ======== Routes for Admin Dashboard =============

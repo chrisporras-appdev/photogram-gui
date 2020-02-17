@@ -34,7 +34,16 @@ class ApplicationController < ActionController::Base
   end
 
   def insert_photo
+    image_url = params.fetch("image_url")
+    image_caption = params.fetch("image_caption")
+    owner_id = params.fetch("owner_id")
+    p = Photo.new
+    p.image = image_url
+    p.caption = image_caption
+    p.owner_id = owner_id
+    p.save
 
+    redirect_to("/photos")
   end
 
   def photo_details
@@ -42,5 +51,15 @@ class ApplicationController < ActionController::Base
     @photo = Photo.where({:id => photo_id}).at(0)
 
     render({:template => "templates/photo_details.html.erb"})
+  end
+
+  def update_photo
+    image_id = params.fetch(:photo_id)
+    p = Photo.where({:id => image_id}).at(0)
+    p.image = image_url
+    p.caption = image_caption
+    p.save
+
+    redirect_to("/photos/#{image_id}")
   end
 end
