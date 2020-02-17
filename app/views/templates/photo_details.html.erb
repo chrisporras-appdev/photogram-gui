@@ -39,7 +39,7 @@
   <dt>Edit photo</dt>
 
   <dd>
-    <form action="/update_photo/<%=@photo.id%>">
+    <form action="/update_photo/<%= @photo.id %>">
       <label for="update_image_url">Image</label>
       <input id="update_image_url" type="text" name="image_url" value="<%= @photo.image %>">
       

@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     u.username = username
     u.save
 
-    redirect_to("/users")
+    redirect_to("/users/#{username}")
   end
 
   def update_user
@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
     p.owner_id = owner_id
     p.save
 
-    redirect_to("/photos")
+    redirect_to("/photos/#{p.id}")
   end
 
   def photo_details
@@ -55,6 +55,8 @@ class ApplicationController < ActionController::Base
 
   def update_photo
     image_id = params.fetch(:photo_id)
+    image_url = params.fetch("image_url")
+    image_caption = params.fetch("image_caption")
     p = Photo.where({:id => image_id}).at(0)
     p.image = image_url
     p.caption = image_caption
